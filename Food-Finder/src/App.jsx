@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Meals from "./pages/Meals";
 import CategoriesPage from "./pages/CategoriesPage";
 import AboutUs from "./pages/About";
+import Random from "./pages/Random";
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/meals" element={<Meals />} />
         <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/random" element={<Random />} /> 
       </Routes>
     </div>
   );

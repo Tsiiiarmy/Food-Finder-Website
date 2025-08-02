@@ -1,9 +1,9 @@
 import Logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
-
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex justify-between items-center px-20 py-8 bg-white shadow-md">
       <Link to="/">
@@ -63,7 +63,10 @@ function Header() {
         </ul>
 
         <div className="flex items-center gap-6 text-sm font-bold text-gray-700">
-          <button className="border border-gray-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-200 transition cursor-pointer">
+          <button
+            onClick={() => navigate("/random")}
+            className="border border-gray-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-200 transition cursor-pointer"
+          >
             Random Generator
           </button>
         </div>
