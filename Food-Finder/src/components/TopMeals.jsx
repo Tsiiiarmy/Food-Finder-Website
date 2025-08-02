@@ -1,14 +1,20 @@
 import MealCard from "./MealCard";
+import { useNavigate } from "react-router-dom";
 
 function TopMeals() {
+  const navigate = useNavigate();
+
   return (
     <section className="px-12 py-20 text-center">
-      <h2 className="text-3xl font-volkhov font-bold text-gray-800 mb-12" style={{fontFamily: 'Volkhov'}}>
+      <h2
+        className="text-3xl font-volkhov font-bold text-gray-800 mb-12"
+        style={{ fontFamily: "Volkhov" }}
+      >
         Top Meals
       </h2>
 
       {/* Meal Cards */}
-      <div className="flex flex-wrap justify-center gap-25">
+      <div className="flex flex-wrap justify-center gap-10">
         <MealCard />
         <MealCard />
         <MealCard />
@@ -16,7 +22,11 @@ function TopMeals() {
 
       {/* See More Button */}
       <div className="mt-10">
-        <button className="bg-gray-200 px-8 py-3 rounded-lg font-poppins font-medium text-gray-600 hover:bg-gray-300 cursor-pointer transition flex items-center gap-2 mx-auto" style={{fontFamily: 'poppins'}}>
+        <button
+          onClick={() => navigate("/meals")}
+          className="bg-gray-200 px-8 py-3 rounded-lg font-poppins font-medium text-gray-600 hover:bg-gray-300 cursor-pointer transition flex items-center gap-2 mx-auto"
+          style={{ fontFamily: "poppins" }}
+        >
           See More <span className="text-lg">➜</span>
         </button>
       </div>

@@ -1,12 +1,20 @@
 import { useState } from 'react'
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Meals from "./pages/Meals";
+import CategoriesPage from "./pages/CategoriesPage";
 import AboutUs from "./pages/About";
 import './App.css'
 
 function App() {
   return (
     <div className="font-poppins">
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/meals" element={<Meals />} />
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
     </div>
   );
 }

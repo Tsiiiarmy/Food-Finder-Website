@@ -1,10 +1,16 @@
 import CategoryCard from "./CategoryCard";
+import { useNavigate } from "react-router-dom";
 
 function Categories() {
+  const navigate = useNavigate();
+
   return (
     <section className="px-12 py-20 text-center">
       {/* Title */}
-      <h2 className="text-3xl font-volkhov font-bold text-gray-800 mb-12"style={{fontFamily: 'Volkhov'}}>
+      <h2
+        className="text-3xl font-volkhov font-bold text-gray-800 mb-12"
+        style={{ fontFamily: "Volkhov" }}
+      >
         Categories
       </h2>
 
@@ -18,7 +24,11 @@ function Categories() {
 
       {/* View All Categories Button */}
       <div className="mt-10">
-        <button className="bg-gray-200 px-8 py-3 rounded-lg font-poppins font-medium text-gray-800 hover:bg-gray-300 transition flex items-center gap-2 mx-auto cursor-pointer"style={{fontFamily: 'poppins'}}>
+        <button
+          onClick={() => navigate("/categories")}
+          className="bg-gray-200 px-8 py-3 rounded-lg font-poppins font-medium text-gray-800 hover:bg-gray-300 transition flex items-center gap-2 mx-auto cursor-pointer"
+          style={{ fontFamily: "poppins" }}
+        >
           View All Categories <span className="text-lg">➜</span>
         </button>
       </div>
