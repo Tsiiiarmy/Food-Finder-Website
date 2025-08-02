@@ -1,6 +1,7 @@
 // import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,7 +9,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
         {/* Logo & Description */}
         <div>
+          <Link to ="/">
           <img src={logo} alt="food finder logo" className="w-40 py-3" />
+          </Link>
           <p className="text-sm text-gray-600">Discover delicious meals from around the world.</p>
         </div>
 

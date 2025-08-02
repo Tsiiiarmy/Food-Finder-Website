@@ -1,10 +1,14 @@
 import Logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 function Header() {
   return (
     <nav className="flex justify-between items-center px-20 py-8 bg-white shadow-md">
-      <img src={Logo} alt="Food Finder Logo" className="w-40 cursor-pointer" />
+      <Link to="/">
+        <img src={Logo} alt="Food Finder Logo" className="w-40 cursor-pointer" />
+      </Link>
 
       <div className="flex items-center gap-10">
         <ul className="flex gap-10 text-gray-700 text-sm font-bold">
