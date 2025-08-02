@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Home from "./pages/Home";
+import AboutUs from "./pages/About";
 import './App.css'
 
 function App() {
