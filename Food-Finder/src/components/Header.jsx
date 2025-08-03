@@ -10,8 +10,8 @@ function Header() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className="bg-white shadow-md px-4 sm:px-8 md:px-20 py-6 font-poppins">
-      <div className="flex justify-between items-center">
+    <nav className="bg-white shadow-md px-4 sm:px-8 md:px-20 py-6 font-poppins"  style={{fontFamily: "Poppins"}}>
+      <div className="flex justify-between items-center" >
         {/* Logo */}
         <Link to="/">
           <img src={Logo} alt="Food Finder Logo" className="w-32 sm:w-40 cursor-pointer" />
@@ -79,7 +79,7 @@ function Header() {
 
           <button
             onClick={() => navigate("/random")}
-            className="border border-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition"
+            className="border border-gray-700 px-4 py-2 font-semibold rounded-lg hover:bg-gray-200 text-gray-700 transition" style={{fontFamily: "Poppins"}}
           >
             Random Generator
           </button>
@@ -95,15 +95,17 @@ function Header() {
             <li><NavLink to="/categories" onClick={toggleMenu}>Categories</NavLink></li>
             <li><NavLink to="/about" onClick={toggleMenu}>About Us</NavLink></li>
           </ul>
-          <button
-            onClick={() => {
-              navigate("/random");
-              setMenuOpen(false);
-            }}
-            className="border border-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition w-full text-left"
-          >
-            Random Generator
-          </button>
+          <div className="flex items-center gap-6 text-sm font-bold text-gray-700" style={{fontFamily: "Poppins"}}>
+            <button
+              onClick={() => {
+                navigate("/random");
+                setMenuOpen(false);
+              }}
+              className="border border-gray-700 px-4 py-2 rounded-lg  hover:bg-gray-200 transition w-full text-left cursor-pointer"
+            >
+              Random Generator
+            </button>
+          </div>
         </div>
       )}
     </nav>

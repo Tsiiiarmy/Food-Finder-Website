@@ -1,11 +1,11 @@
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 function MealDetail() {
+  const { id } = useParams(); // capture meal id from URL
   const [meal, setMeal] = useState(null);
-  const { id } = useParams();
 
   useEffect(() => {
     const fetchMeal = async () => {
@@ -14,7 +14,7 @@ function MealDetail() {
         const data = await res.json();
         setMeal(data.meals[0]);
       } catch (error) {
-        console.error("Error fetching meal details:", error);
+        console.error("Error fetching meal detail:", error);
       }
     };
 
@@ -25,42 +25,37 @@ function MealDetail() {
     <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 py-10">
-        <h1
-          className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 sm:mb-6"
-          style={{ fontFamily: "Volkhov" }}
-        >
-          Meal Detail Page
-        </h1>
-
-        {!meal ? (
-          <p className="text-gray-600" style={{ fontFamily: "Poppins" }}>
-            Loading meal details...
-          </p>
-        ) : (
-          <div className="mt-10 bg-white shadow-lg rounded-2xl p-5 sm:p-6 w-full max-w-5xl text-left">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      <main className="flex-1 px-6 md:px-20 py-10">
+        {meal ? (
+          <div className="bg-white shadow-lg rounded-2xl p-8 max-w-5xl mx-auto">
+            {/* Image + Info */}
+            <div className="grid md:grid-cols-2 gap-10">
               <img
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
-                className="w-full h-64 sm:h-80 object-cover rounded-lg shadow-md"
+                className="w-full h-96 object-cover rounded-xl shadow-md"
               />
+
               <div>
-                <h2
-                  className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2 sm:mb-3"
+                <h1
+                  className="text-4xl font-bold text-gray-800 mb-4"
                   style={{ fontFamily: "Volkhov" }}
                 >
                   {meal.strMeal}
-                </h2>
-                <p
-                  className="text-sm text-gray-600 mb-4"
-                  style={{ fontFamily: "Poppins" }}
-                >
+                </h1>
+                <p className="text-lg text-gray-600 mb-4" style={{ fontFamily: "Poppins" }}>
                   {meal.strCategory} | {meal.strArea}
                 </p>
-                <div className="h-40 sm:h-48 overflow-y-auto pr-2">
+
+                <h3
+                  className="text-xl font-semibold text-gray-800 mb-2"
+                  style={{ fontFamily: "Volkhov" }}
+                >
+                  Instructions
+                </h3>
+                <div className="h-56 overflow-y-auto pr-2">
                   <p
-                    className="text-gray-700 text-sm leading-relaxed"
+                    className="text-sm text-gray-700 leading-relaxed"
                     style={{ fontFamily: "Poppins" }}
                   >
                     {meal.strInstructions}
@@ -69,25 +64,33 @@ function MealDetail() {
               </div>
             </div>
 
+            {/* YouTube Video */}
             {meal.strYoutube && (
-              <div className="mt-8">
+              <div className="mt-10">
                 <h3
-                  className="text-lg sm:text-xl font-semibold mb-4"
+                  className="text-xl font-semibold text-gray-800 mb-4"
                   style={{ fontFamily: "Volkhov" }}
                 >
                   Watch Tutorial
                 </h3>
-                <div className="w-full aspect-w-16 aspect-h-9">
+                <div className="aspect-w-16 aspect-h-9">
                   <iframe
                     src={`https://www.youtube.com/embed/${meal.strYoutube.split("v=")[1]}`}
                     title="Meal Tutorial"
-                    className="w-full h-full rounded-lg shadow"
+                    className="w-full h-96 rounded-lg shadow"
                     allowFullScreen
                   ></iframe>
                 </div>
               </div>
             )}
           </div>
+        ) : (
+          <p
+            className="text-center text-gray-600 text-lg"
+            style={{ fontFamily: "Poppins" }}
+          >
+            Loading meal details...
+          </p>
         )}
       </main>
 
