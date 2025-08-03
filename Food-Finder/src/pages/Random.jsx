@@ -94,7 +94,7 @@ function Random() {
                   <iframe
                     src={`https://www.youtube.com/embed/${meal.strYoutube.split("v=")[1]}`}
                     title="Meal Tutorial"
-                    className="w-full h-full rounded-lg shadow"
+                    className="w-full h-120 rounded-lg shadow"
                     allowFullScreen
                   ></iframe>
                 </div>
