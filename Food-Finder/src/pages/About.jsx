@@ -1,13 +1,9 @@
-import Header from "../components/Header";
-import Footer from '../components/Footer';
 import About from "../components/AboutUs";
 
 function AboutUs() {
   return (
-    <div>
-      <Header />
+    <div className="px-6 md:px-20 py-10">
       <About />
-      <Footer />
     </div>
   );
 }
