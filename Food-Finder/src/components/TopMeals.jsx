@@ -1,29 +1,20 @@
 import { useEffect, useState } from "react";
 import MealCard from "./MealCard";
 import { useNavigate } from "react-router-dom";
+import { getTopMeals } from "../services/mealApi";
 
 function TopMeals() {
   const [meals, setMeals] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchMeals = async () => {
-      try {
-        // Fetch 3 random meals
-        const responses = await Promise.all([
-          fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-          fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-          fetch("https://www.themealdb.com/api/json/v1/1/random.php"),
-        ]);
-        const data = await Promise.all(responses.map((res) => res.json()));
-        setMeals(data.map((d) => d.meals[0]));
-      } catch (error) {
-        console.error("Error fetching top meals:", error);
-      }
-    };
-
-    fetchMeals();
+    fetchTopMeals();
   }, []);
+
+  const fetchTopMeals = async () => {
+    const fetchedMeals = await getTopMeals(3); // fetch 3 random meals
+    setMeals(fetchedMeals);
+  };
 
   return (
     <section className="px-12 py-20 text-center">

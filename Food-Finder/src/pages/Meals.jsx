@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MealCard from "../components/MealCard";
+import { searchMeals } from "../services/mealApi";
 
 function Meals() {
   const [allMeals, setAllMeals] = useState([]);
@@ -15,24 +16,15 @@ function Meals() {
   }, []);
 
   const fetchMeals = async (query = "") => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const res = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
-      );
-      const data = await res.json();
-      if (data.meals) {
-        setAllMeals(data.meals);
-        setVisibleMeals(data.meals.slice(0, visibleCount));
-      } else {
-        setAllMeals([]);
-        setVisibleMeals([]);
-      }
-      setLoading(false);
+      const meals = await searchMeals(query);
+      setAllMeals(meals);
+      setVisibleMeals(meals.slice(0, visibleCount));
     } catch (error) {
       console.error("Error fetching meals:", error);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleSearch = (e) => {
@@ -64,11 +56,8 @@ function Meals() {
           Browse through our collection or search for your favorite meal.
         </p>
 
-        {/* Search Bar*/}
-        <form
-          onSubmit={handleSearch}
-          className="w-full max-w-md mx-auto mb-10"
-        >
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="w-full max-w-md mx-auto mb-10">
           <div
             className="flex items-center bg-gray-200 rounded-full overflow-hidden w-full shadow"
             style={{ fontFamily: "Poppins" }}
@@ -114,7 +103,6 @@ function Meals() {
               ))}
             </div>
 
-            {/* Load More Button */}
             {visibleCount < allMeals.length && (
               <div className="mt-10">
                 <button
