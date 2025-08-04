@@ -35,8 +35,6 @@ function CategoryMeals() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
 
       <main className="flex-1 px-6 md:px-20 py-10 text-center">
         <h1
@@ -80,8 +78,7 @@ function CategoryMeals() {
         )}
       </main>
 
-      <Footer />
-    </div>
+
   );
 }
 

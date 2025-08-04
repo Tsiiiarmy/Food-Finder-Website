@@ -30,7 +30,7 @@ function CategoriesPage() {
 
   return (
     <div className="px-4 sm:px-8 md:px-20 py-10 font-poppins bg-gray-50 min-h-screen">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-gray-800 text-center">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-gray-800 text-center" style={{ fontFamily: "volkhov" }}>
         Meal Categories
       </h2>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
