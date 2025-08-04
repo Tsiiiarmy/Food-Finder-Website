@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CategoriesPage() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -30,14 +32,18 @@ function CategoriesPage() {
 
   return (
     <div className="px-4 sm:px-8 md:px-20 py-10 font-poppins bg-gray-50 min-h-screen">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-gray-800 text-center" style={{ fontFamily: "volkhov" }}>
+      <h2
+        className="text-2xl sm:text-3xl font-bold mb-10 text-gray-800 text-center"
+        style={{ fontFamily: "volkhov" }}
+      >
         Meal Categories
       </h2>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {categories.map((cat) => (
           <div
             key={cat.idCategory}
-            className="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-200 overflow-hidden"
+            onClick={() => navigate(`/category/${cat.strCategory}`)}
+            className="bg-white rounded-xl shadow hover:shadow-lg transition-all duration-200 overflow-hidden cursor-pointer transform hover:scale-105"
           >
             <img
               src={cat.strCategoryThumb}
