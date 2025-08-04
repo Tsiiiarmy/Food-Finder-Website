@@ -1,16 +1,38 @@
+import { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const [popularCategories, setPopularCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch(
+          "https://www.themealdb.com/api/json/v1/1/categories.php"
+        );
+        const data = await res.json();
+        setPopularCategories(data.categories.slice(0, 6)); // Top 6 categories
+      } catch (error) {
+        console.error("Failed to load categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return (
-    <footer className="bg-white text-gray-800 font-poppins" style={{ fontFamily: 'Poppins' }}>
+    <footer className="bg-white text-gray-800 font-poppins">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        
         {/* Logo & Description */}
         <div>
           <Link to="/">
-            <img src={logo} alt="Food Finder Logo" className="w-36 sm:w-40 mb-3" />
+            <img
+              src={logo}
+              alt="Food Finder Logo"
+              className="w-36 sm:w-40 mb-3"
+            />
           </Link>
           <p className="text-sm text-gray-600">
             Discover delicious meals from around the world.
@@ -22,19 +44,19 @@ const Footer = () => {
           <h2 className="font-semibold text-gray-800 mb-2">Quick Links</h2>
           <ul className="space-y-1 text-sm text-gray-600">
             <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
+              <Link to="/meals" className="hover:underline">
                 Meals
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
+              <Link to="/about" className="hover:underline">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
+              <Link to="/random" className="hover:underline">
                 Random Generator
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -43,49 +65,50 @@ const Footer = () => {
         <div>
           <h2 className="font-semibold text-gray-800 mb-2">Popular Categories</h2>
           <ul className="text-sm text-gray-600 grid grid-cols-2 gap-x-4 gap-y-1">
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Deserts
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Pasta
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Vegetarians
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Quick Meals
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Chicken
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline underline-offset-4 decoration-gray-700 transition">
-                Meat
-              </a>
-            </li>
+            {popularCategories.length > 0 ? (
+              popularCategories.map((cat) => (
+                <li key={cat.idCategory}>
+                  <Link
+                    to={`/categories?highlight=${encodeURIComponent(
+                      cat.strCategory
+                    )}`}
+                    className="hover:underline transition"
+                  >
+                    {cat.strCategory}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li>Loading...</li>
+            )}
           </ul>
         </div>
 
-        {/* Social + App */}
+        {/* Social Icons */}
         <div className="flex flex-col items-center md:items-start space-y-4">
           <div className="flex space-x-4">
-            <a href="#" className="p-2 bg-white shadow-md rounded-full hover:scale-105 transition">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-white shadow-md rounded-full hover:scale-105 transition"
+            >
               <FaFacebookF className="text-black" />
             </a>
-            <a href="#" className="p-2 bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 shadow-md rounded-full hover:scale-105 transition">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-gradient-to-r from-purple-400 via-pink-500 to-yellow-500 shadow-md rounded-full hover:scale-105 transition"
+            >
               <FaInstagram className="text-white" />
             </a>
-            <a href="#" className="p-2 bg-white shadow-md rounded-full hover:scale-105 transition">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-white shadow-md rounded-full hover:scale-105 transition"
+            >
               <FaTwitter className="text-black" />
             </a>
           </div>

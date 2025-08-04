@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# Food-Finder-Website
+Foodie Finder is a React + Tailwind web app that lets users explore meals from around the world using TheMealDB API. Search by ingredient, category, or country, view detailed recipes, and even discover random dishes. all with a modern, responsive design.
+=======
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -10,3 +14,4 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+>>>>>>> dc6bb24 (search functionality and navigations on the footer)
