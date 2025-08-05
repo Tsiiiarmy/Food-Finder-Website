@@ -118,8 +118,8 @@ function About() {
               <h3 className="text-xl font-semibold text-gray-800">Yishurun Getachew</h3>
               <div className="text-sm text-gray-700 space-y-1">
                 <p>📧 Yishurung@gmail.com</p>
-                <p>📞 +251 905 043 657</p>
-                <p>💻 GitHub: <a href="https://github.com/Yishurun1G" className="text-green-600 hover:underline">birtukan</a></p>
+                <p>📞 +251 985 116 850</p>
+                <p>💻 GitHub: <a href="https://github.com/Yishurun1G" className="text-green-600 hover:underline">Yishurun</a></p>
               </div>
             </div>
           </div>
