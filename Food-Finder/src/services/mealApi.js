@@ -50,3 +50,15 @@ export async function getMealsByCategory(category) {
 
   return detailedMeals;
 }
+
+// Get all categories
+export async function getCategories() {
+  try {
+    const res = await fetch(`${BASE_URL}/categories.php`);
+    const data = await res.json();
+    return data.categories || [];
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}

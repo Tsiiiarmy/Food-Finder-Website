@@ -1,30 +1,25 @@
 import { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getCategories } from "../services/mealApi";
 
 const Footer = () => {
   const [popularCategories, setPopularCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch(
-          "https://www.themealdb.com/api/json/v1/1/categories.php"
-        );
-        const data = await res.json();
-        setPopularCategories(data.categories.slice(0, 6)); // Top 6 categories
-      } catch (error) {
-        console.error("Failed to load categories:", error);
-      }
+    const fetchPopular = async () => {
+      const categories = await getCategories();
+      setPopularCategories(categories.slice(0, 6)); // Top 6 categories
     };
-
-    fetchCategories();
+    fetchPopular();
   }, []);
 
   return (
-    <footer className="bg-white text-gray-800 font-poppins">
+    <footer className="bg-white text-gray-800 font-poppins" style={{ fontFamily: 'poppins' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        
         {/* Logo & Description */}
         <div>
           <Link to="/">
@@ -67,15 +62,12 @@ const Footer = () => {
           <ul className="text-sm text-gray-600 grid grid-cols-2 gap-x-4 gap-y-1">
             {popularCategories.length > 0 ? (
               popularCategories.map((cat) => (
-                <li key={cat.idCategory}>
-                  <Link
-                    to={`/categories?highlight=${encodeURIComponent(
-                      cat.strCategory
-                    )}`}
-                    className="hover:underline transition"
-                  >
-                    {cat.strCategory}
-                  </Link>
+                <li
+                  key={cat.idCategory}
+                  onClick={() => navigate(`/category/${cat.strCategory}`)}
+                  className="hover:underline transition cursor-pointer"
+                >
+                  {cat.strCategory}
                 </li>
               ))
             ) : (
