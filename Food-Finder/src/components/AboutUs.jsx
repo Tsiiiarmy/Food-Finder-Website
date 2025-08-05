@@ -2,6 +2,7 @@ import tsionImg from "../assets/decore.png";
 import birtukanImg from "../assets/decore.png";
 import placeholderImg from "../assets/decore.png";
 import cookingImg from "../assets/chicken.png"; 
+import NewsletterForm from "./Newsletter";
 
 function About() {
   return (
@@ -103,20 +104,23 @@ function About() {
               <h3 className="text-xl font-semibold text-gray-800">Birtukan Kussa</h3>
               <p className="text-sm text-gray-600">4th Year Software Engineering Student</p>
               <div className="text-sm text-gray-700 space-y-1">
-                <p>📧 birtukan@example.com</p>
-                <p>📞 +251 911 000 000</p>
-                <p>💻 GitHub: <a href="https://github.com/birtukan" className="text-green-600 hover:underline">birtukan</a></p>
+                <p>📧 birtukankussa@gmail.com</p>
+                <p>📞 +251 905 043 657</p>
+                <p>💻 GitHub: <a href="https://github.com/Birtukan-kussa" className="text-green-600 hover:underline">birtukan</a></p>
               </div>
             </div>
           </div>
 
-          {/* Coming Soon */}
+          {/* Yishurun*/}
           <div className="bg-white rounded-2xl shadow-lg overflow-hidden w-80 hover:scale-105 transition transform">
-            <img src={placeholderImg} alt="Coming Soon" className="w-full h-56 object-contain"/>
+            <img src={placeholderImg} alt="Yishurun Getachew" className="w-full h-56 object-contain"/>
             <div className="p-6 space-y-3">
-              <h3 className="text-xl font-semibold text-gray-800">Coming Soon</h3>
-              <p className="text-sm text-gray-600">Team member info will be added</p>
-              <div className="text-sm text-gray-500 italic">Details pending</div>
+              <h3 className="text-xl font-semibold text-gray-800">Yishurun Getachew</h3>
+              <div className="text-sm text-gray-700 space-y-1">
+                <p>📧 Yishurung@gmail.com</p>
+                <p>📞 +251 905 043 657</p>
+                <p>💻 GitHub: <a href="https://github.com/Yishurun1G" className="text-green-600 hover:underline">birtukan</a></p>
+              </div>
             </div>
           </div>
 
@@ -124,32 +128,7 @@ function About() {
       </section>
 
       {/* Newsletter Subscription */}
-<section className="bg-gray-50 py-26 px-6 text-center">
-  <h2 className="text-3xl font-volkhov font-bold text-gray-800 mb-4" style={{fontFamily: 'Volkhov'}}>
-    Join Our Foodie Community
-  </h2>
-  <p className="text-gray-600 font-poppins mb-8 max-w-xl mx-auto" style={{fontFamily: 'poppins'}}>
-    Subscribe to our newsletter and get the latest recipes, cooking tips, 
-    and updates straight to your inbox.
-  </p>
-
-  <form className="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto" style={{fontFamily: 'poppins'}}>
-    <input
-      type="email"
-      placeholder="Enter your email address"
-      className="flex-1 px-6 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600"
-    />
-    <button
-      type="submit"
-      className="bg-gray-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-700 transition"
-    >
-      Subscribe
-    </button>
-  </form>
-
-</section>
-
-
+    <NewsletterForm />
 
     </div>
   );
